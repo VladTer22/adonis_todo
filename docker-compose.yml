@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3333:3333"
+    volumes: 
+      - .:/home/node
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: tr
+      POSTGRES_USER: roux
+      POSTGRES_DB: adonistodo
+    volumes: 
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
